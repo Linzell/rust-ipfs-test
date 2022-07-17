@@ -1,0 +1,11 @@
+[package]
+name = "rust-ipfs"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+ipfs = { git = 'https://github.com/rs-ipfs/rust-ipfs' }
+tokio = { version = "1", features = ["full"] }
+tokio-stream = "0.1"
