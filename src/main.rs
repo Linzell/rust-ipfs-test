@@ -1,7 +1,18 @@
-use ipfs::{Ipfs, IpfsOptions, IpfsPath, TestTypes, UninitializedIpfs};
-use std::process::exit;
+use ipfs::{Ipfs, IpfsOptions, IpfsPath, TestTypes, UninitializedIpfs/* , PeerId,MultiaddrWithoutPeerId, MultiaddrWithPeerId, Multiaddr */};
+use std::{process::exit};
 use tokio::io::AsyncWriteExt;
 use tokio_stream::StreamExt;
+
+/* fn bootstrap_nodes( peer_id: PeerId, multiaddr: MultiaddrWithoutPeerId) -> MultiaddrWithPeerId {
+    MultiaddrWithPeerId {
+        peer_id,
+        multiaddr,
+    }
+}
+
+fn withoutpeer( multiaddr: Multiaddr) -> MultiaddrWithoutPeerId {
+    MultiaddrWithoutPeerId::try_from(multiaddr).unwrap()
+} */
 
 #[tokio::main]
 async fn main() {
@@ -15,8 +26,18 @@ async fn main() {
     // Restore the default bootstrappers to enable content discovery
     ipfs.restore_bootstrappers().await.unwrap();
 
+    /* // Get the PeerId
+    let peer_id : PeerId = "12D3KooWHKsRW6YnASgdBombiF2CyJggAJ1R4vzQwPM3JYhFRk3p".parse().unwrap();
+
+    // Get the multiaddress
+    let multiaddr: Multiaddr = "/ip4/127.0.0.1/tcp/4001/p2p/".parse().unwrap();
+
+    // Add Boostrapers
+    let address_bootstrapper = bootstrap_nodes(peer_id, withoutpeer(multiaddr));
+    ipfs.add_bootstrapper(address_bootstrapper.clone()).await.unwrap(); */
+
     // Get the IPFS FILE
-    let path = "/ipfs/QmQPeNsJPyVWPFDVHb77w8G42Fvo15z4bG2X8D2GhfbSXc/readme"
+    let path = "/ipfs/QmdeawxhTJkSY8xKte2fzmhn3thHhfZErDjV9TWWf8rAZG"
         .parse::<IpfsPath>()
         .unwrap();
 
